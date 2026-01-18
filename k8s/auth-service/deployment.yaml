@@ -19,6 +19,10 @@ spec:
           ports:
             - containerPort: 8080
 
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://tempo:4317
+
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
