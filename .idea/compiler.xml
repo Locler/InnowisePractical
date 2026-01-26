@@ -50,6 +50,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
+        <module name="OrderService" />
+        <module name="UserService" />
         <module name="AuthService" />
       </profile>
     </annotationProcessing>
@@ -60,6 +62,14 @@
       <module name="OrderService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
       <module name="UserService" options="-parameters" />
+    </option>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="" />
+      <module name="OrderService" options="" />
+      <module name="PaymentService" options="" />
+      <module name="UserService" options="" />
     </option>
   </component>
 </project>
