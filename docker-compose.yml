@@ -177,8 +177,9 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       USER_SERVICE_BASE_URL: http://user-service:8082
       ORDER_SERVICE_BASE_URL: http://order-service:8083
-      API_URL: https://random-data-api.com
-      API_PATH: /api/number/random_number
+      API_BASE_URL: https://www.randomnumberapi.com
+      API_PATH: /api/v1.0/random
+      API_QUERY: ?min=1&max=100&count=1
     networks:
       - parent-net
 
