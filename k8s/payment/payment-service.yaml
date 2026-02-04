@@ -39,18 +39,34 @@ spec:
                   key: password
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
               value: kafka:9092
+            - name: USER_SERVICE_BASE_URL
+              value: http://user-service:8082
             - name: ORDER_SERVICE_BASE_URL
               value: http://order-service:8083
+            - name: API_BASE_URL
+              value: https://www.randomnumberapi.com
+            - name: API_PATH
+              value: /api/v1.0/random
+            - name: API_QUERY
+              value: ?min=1&max=100&count=1
+
+          startupProbe:
+            httpGet:
+              path: /actuator/health/startup
+              port: 8084
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 60
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
               port: 8084
-            initialDelaySeconds: 40
+            initialDelaySeconds: 90
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 8084
-            initialDelaySeconds: 40
+            initialDelaySeconds: 90
 ---
 apiVersion: v1
 kind: Service
