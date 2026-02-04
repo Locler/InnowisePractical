@@ -53,6 +53,7 @@ spec:
               value: "900000"
             - name: JWT_ACCESS_REFRESH
               value: "604800000"
+
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness

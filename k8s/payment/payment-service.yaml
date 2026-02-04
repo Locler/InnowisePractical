@@ -52,7 +52,7 @@ spec:
 
           startupProbe:
             httpGet:
-              path: /actuator/health/startup
+              path: /actuator/health
               port: 8084
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -62,11 +62,13 @@ spec:
               path: /actuator/health/liveness
               port: 8084
             initialDelaySeconds: 90
+            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 8084
             initialDelaySeconds: 90
+            periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
