@@ -12,6 +12,39 @@ spec:
       labels:
         app: api-gateway
     spec:
+      initContainers:
+        - name: wait-for-auth-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for auth-service..."
+              until nc -z auth-service 8081; do echo waiting; sleep 2; done
+        - name: wait-for-user-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for user-service..."
+              until nc -z user-service 8082; do echo waiting; sleep 2; done
+        - name: wait-for-order-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for order-service..."
+              until nc -z order-service 8083; do echo waiting; sleep 2; done
+        - name: wait-for-payment-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for payment-service..."
+              until nc -z payment-service 8084; do echo waiting; sleep 2; done
       containers:
         - name: api-gateway
           image: innowisepractical-api-gateway:latest

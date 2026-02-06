@@ -13,13 +13,52 @@ spec:
         app: payment-service
     spec:
       initContainers:
+
         - name: wait-for-db
-          image: postgres:16
-          command: ["sh","-c","until pg_isready -h payment-db -p 5432; do sleep 2; done"]
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Postgres..."
+              until nc -z payment-db 5432; do
+                echo "Postgres not ready, sleeping..."
+                sleep 2
+              done
+              echo "Postgres ready!"
+        
+
+        - name: wait-for-user-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for User Service..."
+              until nc -z user-service 8082; do
+                echo "User Service not ready, sleeping..."
+                sleep 2
+              done
+              echo "User Service ready!"
+        
+
+        - name: wait-for-order-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Order Service..."
+              until nc -z order-service 8083; do
+                echo "Order Service not ready, sleeping..."
+                sleep 2
+              done
+              echo "Order Service ready!"
+
       containers:
         - name: payment-service
           image: innowisepractical-payment-service:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8084
           env:
@@ -61,13 +100,13 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8084
-            initialDelaySeconds: 90
+            initialDelaySeconds: 60
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 8084
-            initialDelaySeconds: 90
+            initialDelaySeconds: 60
             periodSeconds: 10
 ---
 apiVersion: v1
