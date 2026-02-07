@@ -51,6 +51,12 @@ spec:
           ports:
             - containerPort: 8082
           env:
+            - name: SPRING_APPLICATION_NAME
+              value: user-service
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
             - name: SPRING_PROFILES_ACTIVE
               value: docker
             - name: SPRING_DATASOURCE_URL
