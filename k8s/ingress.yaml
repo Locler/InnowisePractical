@@ -1,10 +1,10 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-gateway-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/service-upstream: "true"   # Ingress будет использовать только ready Pods
 spec:
   ingressClassName: nginx
   rules:
@@ -17,4 +17,4 @@ spec:
               service:
                 name: api-gateway
                 port:
-                  number: 80
+                  number: 8080
