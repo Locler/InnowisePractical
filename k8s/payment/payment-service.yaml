@@ -65,9 +65,7 @@ spec:
             - name: SPRING_APPLICATION_NAME
               value: payment-service
             - name: KUBERNETES_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
+              value: default
             - name: SPRING_PROFILES_ACTIVE
               value: docker
             - name: SPRING_DATASOURCE_URL

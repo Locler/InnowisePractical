@@ -9,4 +9,4 @@ data:
     scrape_configs:
       - job_name: 'kubernetes-services'
         static_configs:
-          - targets: [ 'auth-service:8081', 'user-service:8082', 'order-service:8-83', 'payment-service:8084' ]
+          - targets: [ 'auth-service:8081', 'user-service:8082', 'order-service:8083', 'payment-service:8084' ]

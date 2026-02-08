@@ -55,9 +55,7 @@ spec:
             - name: SPRING_APPLICATION_NAME
               value: api-gateway
             - name: KUBERNETES_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
+              value: default
             - name: SPRING_PROFILES_ACTIVE
               value: docker
             - name: GATEWAY_BASE
