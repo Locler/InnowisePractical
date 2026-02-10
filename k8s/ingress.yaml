@@ -4,7 +4,7 @@ metadata:
   name: api-gateway-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/service-upstream: "true"   # Ingress будет использовать только ready Pods
+    nginx.ingress.kubernetes.io/service-upstream: "true"
 spec:
   ingressClassName: nginx
   rules:
